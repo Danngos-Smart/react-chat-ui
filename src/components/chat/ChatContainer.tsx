@@ -27,7 +27,7 @@ const ChatContainer = () => {
   }
 
   return (
-    <div className="w-full xl:w-96 bg-slate-400 h-full rounded-xl overflow-hidden">
+    <div className="w-full sm:w-96 bg-slate-400 h-full rounded-xl overflow-hidden">
       <Chat messages={messages} onNewMessage={handleNewMessage} />
     </div>
   )

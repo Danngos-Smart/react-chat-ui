@@ -9,13 +9,13 @@ export type MessageProps = {
 }
 
 const bottomType = {
-  sent: 'rounded-br-sm rounded-t-md',
-  received: 'rounded-bl-sm rounded-t-md'
+  sent: 'rounded-br-sm rounded-tl-md rounded-tr-md',
+  received: 'rounded-bl-sm rounded-tl-md rounded-tr-md'
 }
 
 const middleType = {
-  sent: 'rounded-t-md rounded-b-md',
-  received: 'rounded-t-md rounded-b-md'
+  sent: 'rounded-tl-md rounded-tr-md rounded-bl-md rounded-br-md',
+  received: 'rounded-tl-md rounded-tr-md rounded-bl-md rounded-br-md'
 }
 
 const topType = {

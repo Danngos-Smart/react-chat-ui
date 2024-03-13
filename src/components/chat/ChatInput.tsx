@@ -18,7 +18,7 @@ const ChatInput = ({ onNewMessage }: ChatInputProps) => {
       <input
         type="text"
         placeholder="Type a message"
-        className="w-full bg-gray-light focus:outline-none text-gray-500 placeholder:text-gray-400 pr-16"
+        className="w-full bg-gray-light focus:outline-none text-gray-500 placeholder:text-gray-400 pr-10"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
