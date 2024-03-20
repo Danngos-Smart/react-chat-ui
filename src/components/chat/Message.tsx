@@ -6,6 +6,7 @@ export type MessageProps = {
   type?: "sent" | "received";
   status?: "read" | "delivered" | "sent" | "error";
   grouped?: 'top' | 'middle' | 'bottom';
+  isLast?: boolean;
 }
 
 const bottomType = {
@@ -35,7 +36,7 @@ const padding = {
   default: 'py-2'
 }
 
-const Message = ({ message, date, type = 'sent', status, grouped }: MessageProps) => {
+const Message = ({ message, date, type = 'sent', status, grouped, isLast }: MessageProps) => {
   return (
     <div className={classNames("w-full p-4 gap-2 flex flex-col", padding[grouped || 'default'], type === 'received' ? 'items-start' : 'items-end')}>
       <div className={classNames("p-4 text-xs bg-gray-medium rounded-t-xl max-w-[80%] rounded-xl",
@@ -60,6 +61,7 @@ const Message = ({ message, date, type = 'sent', status, grouped }: MessageProps
         {!(grouped === 'top' || grouped === 'middle') && <span>
           {date}
         </span>}
+        {isLast && <span id='last-msg' />}
       </div>
     </div>
   )

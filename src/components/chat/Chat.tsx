@@ -26,15 +26,18 @@ const Chat = ({ messages, onNewMessage }: ChatProps) => {
       message,
       type: 'sent'
     })
+    // scroll to last element with the class 'last-msg'
+    const lastMsg = document.getElementById('last-msg')
+    lastMsg?.scrollIntoView({ behavior: 'smooth' })
   }
-  
+
   return (
     <div className="text-gray-500 bg-gray h-full flex flex-col">
       {/* chat messages */}
-      <div className="flex-1 flex flex-col justify-end overflow-y-auto">
-        {messagesFormatted.map((message, index) => (
-          <Message key={index} {...message} />
-        ))}
+      <div className="flex-1 overflow-y-auto flex flex-col-reverse">
+          {messagesFormatted.map((message, index) => (
+            <Message key={index} {...message} isLast={index === 0} />
+          ))}
       </div>
       {/* chat box */}
       <ChatInput onNewMessage={handleOnNewMessage} />
