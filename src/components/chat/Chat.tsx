@@ -6,10 +6,10 @@ export type Message = MessageProps
 
 type ChatProps = {
   messages: Message[];
-  onNewMessage: (message: Message) => void;
+  onNewMessageSend: (message: Message) => void;
 }
 
-const Chat = ({ messages, onNewMessage }: ChatProps) => {
+const Chat = ({ messages, onNewMessageSend }: ChatProps) => {
   const messagesFormatted = messages.map((message, index) => {
     const previousMessage = messages[index - 1]
     const nextMessage = messages[index + 1]
@@ -20,8 +20,8 @@ const Chat = ({ messages, onNewMessage }: ChatProps) => {
     }
   })
 
-  const handleOnNewMessage = (message: string) => {
-    onNewMessage({
+  const handleOnNewMessageSend = (message: string) => {
+    onNewMessageSend({
       date: new Date().toLocaleTimeString(),
       message,
       type: 'sent'
@@ -40,7 +40,7 @@ const Chat = ({ messages, onNewMessage }: ChatProps) => {
           ))}
       </div>
       {/* chat box */}
-      <ChatInput onNewMessage={handleOnNewMessage} />
+      <ChatInput onNewMessage={handleOnNewMessageSend} />
     </div>
   )
 }
