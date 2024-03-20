@@ -9,6 +9,7 @@ const ChatInput = ({ onNewMessage }: ChatInputProps) => {
   
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!message) return
     onNewMessage(message)
     setMessage('')
   }
