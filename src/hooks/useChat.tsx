@@ -16,8 +16,10 @@ const useChat = (props : useChatProps) => {
   }
 
   return {
-    messages,
-    onNewMessageSend,
+    chatComponent: {
+      messages,
+      onNewMessageSend,
+    }
   }
 }
 export default useChat

@@ -25,7 +25,7 @@ const ChatContainer = () => {
 
   return (
     <div className="w-full sm:w-96 bg-slate-400 h-full rounded-xl overflow-hidden">
-      <Chat {...chat} />
+      <Chat {...chat.chatComponent} />
     </div>
   )
 }
