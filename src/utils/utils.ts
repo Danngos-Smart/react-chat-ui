@@ -14,3 +14,9 @@ export const getGroupedMessage = (currentDate: string, previousDate: string = ''
   if (previous === current && (!nextDate || current !== next)) return 'top'
   return undefined;  
 }
+
+export const formatDate = (date: string, format = 'HH:mm:ss', formatOutput = 'HH:mm') => {
+  // validate date
+  if (!moment(date, format).isValid()) return ''
+  return moment(date, format).format(formatOutput)
+}

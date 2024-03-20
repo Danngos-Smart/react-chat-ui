@@ -1,4 +1,4 @@
-import { getGroupedMessage } from "@/utils/utils";
+import { formatDate, getGroupedMessage } from "@/utils/utils";
 import ChatInput from "./ChatInput"
 import Message, { MessageProps } from "./Message"
 
@@ -16,7 +16,8 @@ const Chat = ({ messages, onNewMessageSend }: ChatProps) => {
     const grouped: 'top' | 'middle' | 'bottom' | undefined = getGroupedMessage(message.date, previousMessage?.date || '', nextMessage?.date || '')
     return {
       ...message,
-      grouped
+      grouped,
+      date: formatDate(message.date)
     }
   })
 
