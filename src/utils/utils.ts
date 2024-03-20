@@ -9,8 +9,8 @@ export const getGroupedMessage = (currentDate: string, previousDate: string = ''
   const previous = moment(previousDate, format).format('HH:mm')
   const current = moment(currentDate, format).format('HH:mm')
   const next = moment(nextDate, format).format('HH:mm')
-  if ((!previousDate || previous !== current) && current === next) return 'top'
+  if ((!previousDate || previous !== current) && current === next) return 'bottom'
   if (previous === current && current === next) return 'middle'
-  if (previous === current && (!nextDate || current !== next)) return 'bottom'
+  if (previous === current && (!nextDate || current !== next)) return 'top'
   return undefined;  
 }
