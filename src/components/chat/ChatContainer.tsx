@@ -1,5 +1,10 @@
 import Chat, { Message } from "./Chat"
 import useChat from "@/hooks/useChat"
+import { useEffect } from "react"
+// testing socket.io
+import io from "socket.io-client"
+
+const socket = io('http://localhost:3000')
 
 const initMsgExample: Message[] = [
   {
@@ -19,13 +24,22 @@ const initMsgExample: Message[] = [
 ]
 
 const ChatContainer = () => {
-  const chat = useChat({
-    initialMessages: initMsgExample
+  const { chatComponent, onMessageReceived } = useChat({
+    initialMessages: initMsgExample,
+    onMessageSend: (message) => {
+      socket.emit('send-message', message)
+    },
   })
+
+  useEffect(() => {
+    socket.on('receive-message', (message: Message) => {
+      onMessageReceived(message)
+    })
+  }, [onMessageReceived])
 
   return (
     <div className="w-full sm:w-96 bg-slate-400 h-full rounded-xl overflow-hidden">
-      <Chat {...chat.chatComponent} />
+      <Chat {...chatComponent} />
     </div>
   )
 }
