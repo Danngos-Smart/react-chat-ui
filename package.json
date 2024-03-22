@@ -6,6 +6,10 @@
   "main": "dist/index.js",
   "author": "Pep3M",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pep3M/react-chat-ui"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
