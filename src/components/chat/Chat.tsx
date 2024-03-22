@@ -13,7 +13,7 @@ const Chat = ({ messages, onNewMessageSend }: ChatProps) => {
   const messagesFormatted = messages.map((message, index) => {
     const previousMessage = messages[index - 1]
     const nextMessage = messages[index + 1]
-    const grouped: 'top' | 'middle' | 'bottom' | undefined = getGroupedMessage(message.date, previousMessage?.date || '', nextMessage?.date || '')
+    const grouped: 'top' | 'middle' | 'bottom' | undefined = getGroupedMessage(message, previousMessage, nextMessage)
     return {
       ...message,
       grouped,

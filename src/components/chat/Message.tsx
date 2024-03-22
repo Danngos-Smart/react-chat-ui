@@ -36,10 +36,16 @@ const padding = {
   default: 'py-2'
 }
 
+const bg = {
+  sent: 'bg-gray-medium',
+  received: 'bg-primary-light/20'
+}
+
 const Message = ({ message, date, type = 'sent', status, grouped, isLast }: MessageProps) => {
   return (
     <div className={classNames("w-full p-4 gap-2 flex flex-col", padding[grouped || 'default'], type === 'received' ? 'items-start' : 'items-end')}>
-      <div className={classNames("p-4 text-xs bg-gray-medium rounded-t-xl max-w-[80%] rounded-xl",
+      <div className={classNames("p-4 text-xs rounded-t-xl max-w-[80%] rounded-xl",
+        bg[type],
         grouped === 'top' ? topType[type] : '',
         grouped === 'middle' ? middleType[type] : '',
         grouped === 'bottom' ? bottomType[type] : '',

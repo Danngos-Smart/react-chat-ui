@@ -1,3 +1,4 @@
+import { Message } from "@/components/chat/Chat";
 import moment from "moment";
 
 export function classNames(...classes: string[]) {
@@ -5,13 +6,13 @@ export function classNames(...classes: string[]) {
 }
 
 // grouped messages by minutes using moment
-export const getGroupedMessage = (currentDate: string, previousDate: string = '', nextDate: string = '', format = 'HH:mm:ss') => {
-  const previous = moment(previousDate, format).format('HH:mm')
-  const current = moment(currentDate, format).format('HH:mm')
-  const next = moment(nextDate, format).format('HH:mm')
-  if ((!previousDate || previous !== current) && current === next) return 'bottom'
-  if (previous === current && current === next) return 'middle'
-  if (previous === current && (!nextDate || current !== next)) return 'top'
+export const getGroupedMessage = (currentMsg: Message, previousMsg?: Message, nextMsg?: Message, format = 'HH:mm:ss') => {
+  const previous = previousMsg && moment(previousMsg.date, format).format('HH:mm')
+  const current = moment(currentMsg.date, format).format('HH:mm')
+  const next = nextMsg && moment(nextMsg.date, format).format('HH:mm')
+  if ((!previousMsg || previous !== current) && current === next && currentMsg.type === nextMsg?.type) return 'bottom'
+  if (previous === current && current === next && currentMsg.type === previousMsg?.type && currentMsg.type === nextMsg?.type) return 'middle'
+  if (previous === current && previousMsg === currentMsg.type && (!nextMsg || current !== next)) return 'top'
   return undefined;  
 }
 
