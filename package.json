@@ -1,5 +1,5 @@
 {
-  "name": "react-chat-ui",
+  "name": "react-ui-chat",
   "version": "0.0.1",
   "description": "A simple chat UI for React",
   "type": "module",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pep3M/react-chat-ui"
+    "url": "https://github.com/Pep3M/react-ui-chat"
   },
   "scripts": {
     "dev": "vite",
