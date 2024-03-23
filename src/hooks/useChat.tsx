@@ -64,7 +64,7 @@ const useChat = (props?: useChatProps) => {
 
   useEffect(() => {
     if (props?.messages) {
-      setMessages(props.messages)
+      setMessages([...props.messages].reverse())
     }
   }, [props?.messages])
 

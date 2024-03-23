@@ -1,6 +1,6 @@
 import { TMessage } from '@/types'
-import CustomChat from './Example2/CustomChat'
 import { useState } from 'react'
+import { Chat } from '..'
 
 type Conversation = {
   id: string | number,
@@ -9,7 +9,7 @@ type Conversation = {
   date: string,
 }
 
-// simulate a chat between two clients, passing the ALL messages
+// simulate a chat between two users, passing ALL messages
 function Example3() {
   const [conversation, setConversation] = useState<Conversation[]>([])
 
@@ -25,7 +25,15 @@ function Example3() {
     ])
   }
 
-  
+  const messagesByOwner: (owner: string) => TMessage[] = (owner) => 
+    conversation.map((message, index) => ({
+      id: index +1,
+      message: message.text,
+      date: message.date,
+      type: message.owner === owner ? 'sent' : 'receive',
+      status: 'delivered'
+    }))
+    
 
   return (
     <div style={{
@@ -34,13 +42,13 @@ function Example3() {
       width: '100%',
       height: '100vh',
     }}>
-      <CustomChat
-        client={'Albert'}
-        sendMessage={handleOnMessageSend}
+      <Chat 
+        messages={messagesByOwner('Albert')}
+        onMessageSend={(message) => handleOnMessageSend(message, 'Albert')}
       />
-      <CustomChat
-        client={'Nina'}
-        sendMessage={handleOnMessageSend}
+      <Chat 
+        messages={messagesByOwner('Nina')}
+        onMessageSend={(message) => handleOnMessageSend(message, 'Nina')}
       />
     </div>
   )
