@@ -48,7 +48,10 @@ const Message = ({ message, date, type = 'sent', status, grouped, isLast }: Mess
         {message}
       </div>
       <div className="text-xs text-gray-400 flex gap-1">
-        {status && <span className="text-primary-light">
+        {type === 'sent' 
+          && !(grouped === 'top' || grouped === 'middle') 
+          && status 
+          && <span className="text-primary-light">
           {status === 'read'
             ? '✓✓'
             : status === 'delivered'
