@@ -1,13 +1,7 @@
+import { TMessage } from "@/types";
 import { classNames } from "@/utils/utils";
 
-export type MessageProps = {
-  message: string;
-  date: string;
-  type?: "sent" | "received";
-  status?: "read" | "delivered" | "sent" | "error";
-  grouped?: 'top' | 'middle' | 'bottom';
-  isLast?: boolean;
-}
+export type MessageProps = TMessage
 
 const bottomType = {
   sent: 'rounded-br-sm rounded-tl-md rounded-tr-md',

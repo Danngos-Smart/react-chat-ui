@@ -1,16 +1,16 @@
-import { Message } from "@/components/chat/Chat"
+import { TMessage } from "@/types";
 import { useCallback, useState } from "react"
 
 type useChatProps = {
-  initialMessages?: Message[];
-  onMessageSend?: (message: Message) => void;
+  initialMessages?: TMessage[];
+  onMessageSend?: (message: TMessage) => void;
 }
 
 const useChat = (props : useChatProps) => {
-  const [messages, setMessages] = useState<Message[]>(props.initialMessages || [])
+  const [messages, setMessages] = useState<TMessage[]>(props.initialMessages || [])
 
   // add new message to the chat
-  const onNewMessage = useCallback((message: Message) => {
+  const onNewMessage = useCallback((message: TMessage) => {
     setMessages([
       message,
       ...messages,
@@ -18,7 +18,7 @@ const useChat = (props : useChatProps) => {
   }, [messages])
 
   // send new message
-  const onNewMessageSend = useCallback((message: Message) => {
+  const onNewMessageSend = useCallback((message: TMessage) => {
     if (props.onMessageSend) {
       props.onMessageSend(message)
     }
@@ -29,7 +29,7 @@ const useChat = (props : useChatProps) => {
   }, [onNewMessage, props])
 
   // receive new message
-  const onNewMessageReceived = useCallback((message: Message) => {
+  const onNewMessageReceived = useCallback((message: TMessage) => {
     onNewMessage({
       ...message,
       type: "received",

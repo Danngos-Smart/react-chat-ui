@@ -25,21 +25,25 @@ npm install react-ui-chat
 import './App.css'
 import { Chat, useChat } from 'react-ui-chat'
 import "react-ui-chat/tailwind.css" // if you are not using tailwind
+import { TMessage } from 'react-ui-chat/types' // if you are using typescript
+
+const initialMessages: TMessage[] = [
+  {
+    message: 'I need help with my order',
+    date: new Date().toISOString(),
+    type: "sent",
+  },
+  {
+    message: 'Hello, how can I help you?',
+    date: new Date().toISOString(),
+    type: "received",
+  },
+]
 
 function App() {
+
   const { chatComponent } = useChat({
-    initialMessages: [
-      {
-        message: 'Hello, how can I help you?',
-        date: new Date().toISOString(),
-        type: "received",
-      },
-      {
-        message: 'I need help with my order',
-        date: new Date().toISOString(),
-        type: "sent",
-      },
-    ]
+    initialMessages,
   })
 
   return (

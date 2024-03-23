@@ -1,4 +1,5 @@
-import Chat, { Message } from "./Chat"
+import { TMessage } from "@/types"
+import Chat from "./Chat"
 import useChat from "@/hooks/useChat"
 
 const ChatContainer = () => {
@@ -18,7 +19,7 @@ const ChatContainer = () => {
         type: "sent",
       },
     ],
-    onMessageSend: (message: Message) => {
+    onMessageSend: (message: TMessage) => {
       message
       // console.log('message sent', message) // send message to the server
     },

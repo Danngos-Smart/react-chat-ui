@@ -1,12 +1,11 @@
 import { formatDate, getGroupedMessage } from "@/utils/utils";
 import ChatInput from "./ChatInput"
-import Message, { MessageProps } from "./Message"
-
-export type Message = MessageProps
+import Message from "./Message"
+import { TMessage } from "@/types";
 
 type ChatProps = {
-  messages: Message[];
-  onNewMessageSend: (message: Message) => void;
+  messages: TMessage[];
+  onNewMessageSend: (message: TMessage) => void;
 }
 
 const Chat = ({ messages, onNewMessageSend }: ChatProps) => {

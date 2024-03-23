@@ -1,6 +1,6 @@
 {
   "name": "react-ui-chat",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A simple chat UI for React",
   "type": "module",
   "files": [
@@ -20,17 +20,18 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.js"
     },
-    "./tailwind.css": "./dist/tailwind.css"
+    "./tailwind.css": "./dist/tailwind.css",
+    "./types": "./dist/types.ts"
   },
   "author": "Pep3M",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pep3M/react-ui-chat"
+    "url": "git+https://github.com/Pep3M/react-ui-chat.git"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npx tailwindcss build -o dist/tailwind.css",
+    "build": "tsc && vite build && npx tailwindcss build -o dist/tailwind.css && cp ./src/types.ts ./dist",
     "build_lib": "rollup -c",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

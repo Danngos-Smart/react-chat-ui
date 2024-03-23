@@ -1,4 +1,4 @@
-import { Message } from "@/components/chat/Chat";
+import { TMessage } from "@/types";
 import moment from "moment";
 
 export function classNames(...classes: string[]) {
@@ -6,7 +6,7 @@ export function classNames(...classes: string[]) {
 }
 
 // grouped messages by minutes using moment
-export const getGroupedMessage = (currentMsg: Message, previousMsg?: Message, nextMsg?: Message, format = 'HH:mm:ss') => {
+export const getGroupedMessage = (currentMsg: TMessage, previousMsg?: TMessage, nextMsg?: TMessage, format = 'HH:mm:ss') => {
   const previous = previousMsg && moment(previousMsg.date, format).format('HH:mm')
   const current = moment(currentMsg.date, format).format('HH:mm')
   const next = nextMsg && moment(nextMsg.date, format).format('HH:mm')
