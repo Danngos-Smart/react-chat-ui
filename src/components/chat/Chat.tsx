@@ -2,13 +2,23 @@ import { formatDate, getGroupedMessage } from "@/utils/utils";
 import ChatInput from "./ChatInput"
 import Message from "./Message"
 import { TMessage } from "@/types";
+import useChat from "@/hooks/useChat";
 
 type ChatProps = {
-  messages: TMessage[];
-  onNewMessageSend: (message: TMessage) => void;
+  initialMessages?: TMessage[];
+  messages?: TMessage[];
+  messageReceived?: TMessage | null;
+  onMessageSend?: (message: TMessage) => void;
 }
 
-const Chat = ({ messages, onNewMessageSend }: ChatProps) => {
+const Chat = (props: ChatProps) => {
+  const { chatComponent: { messages, onNewMessageSend } } = useChat({
+    initialMessages: props.initialMessages,
+    messages: props.messages,
+    messageReceived: props.messageReceived,
+    onMessageSend: props.onMessageSend,
+  })
+
   const messagesFormatted = messages.map((message, index) => {
     const previousMessage = messages[index - 1]
     const nextMessage = messages[index + 1]
@@ -36,9 +46,9 @@ const Chat = ({ messages, onNewMessageSend }: ChatProps) => {
     <div className="text-gray-500 bg-gray h-full flex flex-col">
       {/* chat messages */}
       <div className="flex-1 overflow-y-auto flex flex-col-reverse">
-          {messagesFormatted.map((message, index) => (
-            <Message key={index} {...message} isLast={index === 0} />
-          ))}
+        {messagesFormatted.map((message, index) => (
+          <Message key={index} {...message} isLast={index === 0} />
+        ))}
       </div>
       {/* chat box */}
       <ChatInput onNewMessage={handleOnNewMessageSend} />

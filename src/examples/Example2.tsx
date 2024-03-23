@@ -9,7 +9,7 @@ type Conversation = {
   date: string,
 }
 
-// In this example we will simulate a chat between two clients, sending the last message received to the other client.
+// In this example we will simulate a chat between two users, sending the last message received to the other user.
 function Example2() {
   const [conversation, setConversation] = useState<Conversation[]>([])
 

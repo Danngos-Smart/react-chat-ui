@@ -1,6 +1,5 @@
 import { TMessage } from "@/types"
-import "react-ui-chat/tailwind.css" // if you are not using tailwind
-import { Chat, useChat } from ".."
+import { Chat } from ".."
 
 const initialMessages: TMessage[] = [
   {
@@ -17,14 +16,6 @@ const initialMessages: TMessage[] = [
   },
 ]
 
-function Example1() {
-  const { chatComponent } = useChat({
-    initialMessages,
-  })
-
-  return (
-      <Chat {...chatComponent} />
-  )
-}
+const Example1 = () => <Chat initialMessages={initialMessages}/>
 
 export default Example1
