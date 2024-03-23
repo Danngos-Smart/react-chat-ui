@@ -1,30 +1,66 @@
-# React + TypeScript + Vite
+# React UI Chat - (IN DEVELOPMENT, DO NOT USE, YET)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React UI Chat is a customizable chat component for React applications. It provides a simple and elegant interface for building chat features in your web projects.
 
-Currently, two official plugins are available:
+![1711210041623](image/README/1711210041623.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 📝 Easy-to-use chat interface.
+- 🎨 Customizable styling and theming.
+- 📦 Lightweight and dependency-free.
+- ⚙️ Extensible with plugins and hooks.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+You can install `react-ui-chat` via npm:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install react-ui-chat
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage
+
+```jsx
+import './App.css'
+import { Chat, useChat } from 'react-ui-chat'
+import "react-ui-chat/tailwind.css" // if you are not using tailwind
+
+function App() {
+  const { chatComponent } = useChat({
+    initialMessages: [
+      {
+        message: 'Hello, how can I help you?',
+        date: new Date().toISOString(),
+        type: "received",
+      },
+      {
+        message: 'I need help with my order',
+        date: new Date().toISOString(),
+        type: "sent",
+      },
+    ]
+  })
+
+  return (
+    <div>
+      <Chat {...chatComponent} />
+    </div>
+  )
+}
+
+export default App
+```
+
+## Props
+
+* `Chat`: The main chat container.
+* `useChat`: A hook to manage the chat state.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

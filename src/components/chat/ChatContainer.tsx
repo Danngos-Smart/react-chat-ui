@@ -6,6 +6,18 @@ const ChatContainer = () => {
     chatComponent, 
     // onMessageReceived // callback to receive message from the server
   } = useChat({
+    initialMessages: [
+      {
+        message: 'Hello, how can I help you?',
+        date: new Date().toISOString(),
+        type: "received",
+      },
+      {
+        message: 'I need help with my order',
+        date: new Date().toISOString(),
+        type: "sent",
+      },
+    ],
     onMessageSend: (message: Message) => {
       message
       // console.log('message sent', message) // send message to the server
