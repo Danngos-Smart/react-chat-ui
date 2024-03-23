@@ -9,11 +9,13 @@ const ChatContainer = () => {
   } = useChat({
     initialMessages: [
       {
+        id: 1,
         message: 'Hello, how can I help you?',
         date: new Date().toISOString(),
         type: "received",
       },
       {
+        id: 2,
         message: 'I need help with my order',
         date: new Date().toISOString(),
         type: "sent",

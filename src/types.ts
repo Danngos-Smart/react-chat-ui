@@ -1,4 +1,5 @@
 export type TMessage = {
+  id: string | number;
   message: string;
   date: string;
   type?: "sent" | "received";

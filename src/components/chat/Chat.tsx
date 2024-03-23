@@ -22,6 +22,7 @@ const Chat = ({ messages, onNewMessageSend }: ChatProps) => {
 
   const handleOnNewMessageSend = (message: string) => {
     onNewMessageSend({
+      id: Math.random(),
       date: new Date().toLocaleTimeString(),
       message,
       type: 'sent'
