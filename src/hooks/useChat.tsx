@@ -26,7 +26,7 @@ const useChat = (props?: useChatProps) => {
     }
     onNewMessage({
       ...message,
-      status: "sent",
+      status: "sending",
     })
   }, [onNewMessage, props])
 
@@ -34,12 +34,25 @@ const useChat = (props?: useChatProps) => {
   const onNewMessageReceived = useCallback((message: TMessage) => {
     onNewMessage({
       ...message,
-      type: "received",
+      type: "receive",
     })
   }, [onNewMessage])
 
   const searchMessage = useCallback((id: string | number) => {
     return messages.find((message) => message.id === id)
+  }, [messages])
+
+  // update status of the message sended
+  const updateMessageStatus = useCallback((id: string | number, status: "sending" | "delivered" | "read" | "error") => {
+    setMessages(messages.map((message) => {
+      if (message.id === id) {
+        return {
+          ...message,
+          status,
+        }
+      }
+      return message
+    }))
   }, [messages])
   
   // effect to receive message from the server
@@ -60,7 +73,7 @@ const useChat = (props?: useChatProps) => {
       messages,
       onNewMessageSend,
     },
-    // onMessageReceived: onNewMessageReceived,
+    updateMessageStatus,
   }
 }
 export default useChat

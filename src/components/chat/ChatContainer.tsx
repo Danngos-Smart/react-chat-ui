@@ -12,7 +12,7 @@ const ChatContainer = () => {
         id: 1,
         message: 'Hello, how can I help you?',
         date: new Date().toISOString(),
-        type: "received",
+        type: "receive",
       },
       {
         id: 2,

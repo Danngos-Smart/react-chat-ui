@@ -13,7 +13,7 @@ const initialMessages: TMessage[] = [
     id: 2,
     message: 'Hello, how can I help you?',
     date: new Date().toISOString(),
-    type: "received",
+    type: "receive",
   },
 ]
 

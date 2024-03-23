@@ -9,8 +9,8 @@ type Conversation = {
   date: string,
 }
 
-// In this example we will simulate a chat between two clients, sending the last message received to the other client.
-function Example2() {
+// simulate a chat between two clients, passing the ALL messages
+function Example3() {
   const [conversation, setConversation] = useState<Conversation[]>([])
 
   const handleOnMessageSend = (message: TMessage, owner: string) => {
@@ -25,17 +25,7 @@ function Example2() {
     ])
   }
 
-  // get the last message from the local state, to simulate the message received from the server
-  const getLastMessage = (owner: string) => {
-    const lastMessage = conversation.filter((message) => message.owner === owner).pop()
-    if (!lastMessage) return undefined
-    return {
-      id: lastMessage.id,
-      date: lastMessage.date,
-      message: lastMessage.text,
-      type: 'receive',
-    } as TMessage
-  }
+  
 
   return (
     <div style={{
@@ -46,16 +36,14 @@ function Example2() {
     }}>
       <CustomChat
         client={'Albert'}
-        messageReceived={getLastMessage('Nina')}
         sendMessage={handleOnMessageSend}
       />
       <CustomChat
         client={'Nina'}
-        messageReceived={getLastMessage('Albert')}
         sendMessage={handleOnMessageSend}
       />
     </div>
   )
 }
 
-export default Example2
+export default Example3
