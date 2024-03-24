@@ -3,6 +3,8 @@ import ChatInput from "./ChatInput"
 import Message from "./Message"
 import { TMessage } from "@/types";
 import useChat from "@/hooks/useChat";
+import { AnimatePresence } from "framer-motion";
+import { useMemo } from "react";
 
 type ChatProps = {
   initialMessages?: TMessage[];
@@ -19,7 +21,7 @@ const Chat = (props: ChatProps) => {
     onMessageSend: props.onMessageSend,
   })
 
-  const messagesFormatted = messages.map((message, index) => {
+  const messagesFormatted = useMemo(() => messages.map((message, index) => {
     const previousMessage = messages[index - 1]
     const nextMessage = messages[index + 1]
     const grouped: 'top' | 'middle' | 'bottom' | undefined = getGroupedMessage(message, previousMessage, nextMessage)
@@ -28,7 +30,7 @@ const Chat = (props: ChatProps) => {
       grouped,
       date: formatDate(message.date)
     }
-  })
+  }), [messages])
 
   const handleOnNewMessageSend = (message: string) => {
     onNewMessageSend({
@@ -46,9 +48,11 @@ const Chat = (props: ChatProps) => {
     <div className="text-gray-500 bg-gray h-full flex flex-col">
       {/* chat messages */}
       <div className="flex-1 overflow-y-auto flex flex-col-reverse">
-        {messagesFormatted.map((message, index) => (
-          <Message key={index} {...message} isLast={index === 0} />
-        ))}
+        <AnimatePresence>
+          {messagesFormatted.map((message, index) => (
+            <Message key={message.id} {...message} isLast={index === 0} />
+          ))}
+        </AnimatePresence>
       </div>
       {/* chat box */}
       <ChatInput onNewMessage={handleOnNewMessageSend} />

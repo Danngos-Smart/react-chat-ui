@@ -1,5 +1,6 @@
 import { TMessage } from "@/types";
 import { classNames } from "@/utils/utils";
+import { motion } from "framer-motion";
 
 export type MessageProps = TMessage
 
@@ -37,16 +38,31 @@ const bg = {
 
 const Message = ({ message, date, type = 'sent', status, grouped, isLast }: MessageProps) => {
   return (
-    <div className={classNames("w-full p-4 gap-2 flex flex-col", padding[grouped || 'default'], type === 'receive' ? 'items-start' : 'items-end')}>
-      <div className={classNames("p-4 text-xs rounded-t-xl max-w-[80%] rounded-xl",
-        bg[type],
-        grouped === 'top' ? topType[type] : '',
-        grouped === 'middle' ? middleType[type] : '',
-        grouped === 'bottom' ? bottomType[type] : '',
-        !grouped ? withoutGroup[type] : ''
-      )}>
+    <motion.div 
+      layout
+      className={classNames("w-full p-4 gap-2 flex flex-col", padding[grouped || 'default'], type === 'receive' ? 'items-start' : 'items-end')}
+      initial={{ scaleY: 0 }}
+      animate={{ scaleY: 1 }}
+      exit={{ scaleY: 0 }}
+      transition={{ duration: 0.15, type: 'just'}}
+      style={{ transformOrigin: type === 'sent' ? "bottom right" : "bottom left" }}
+    >
+      <motion.div 
+        className={classNames("p-4 text-xs rounded-t-xl max-w-[80%] rounded-xl",
+          bg[type],
+          grouped === 'top' ? topType[type] : '',
+          grouped === 'middle' ? middleType[type] : '',
+          grouped === 'bottom' ? bottomType[type] : '',
+          !grouped ? withoutGroup[type] : ''
+        )}
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        exit={{ scaleX: 0, opacity: 0 }}
+        transition={{ duration: 0.1, type: 'just'}}
+        style={{ transformOrigin: type === 'sent' ? "bottom right" : "bottom left" }}
+      >
         {message}
-      </div>
+      </motion.div>
       <div className="text-xs text-gray-400 flex gap-1">
         {type === 'sent' 
           && !(grouped === 'top' || grouped === 'middle') 
@@ -66,7 +82,7 @@ const Message = ({ message, date, type = 'sent', status, grouped, isLast }: Mess
         </span>}
         {isLast && <span id='last-msg' />}
       </div>
-    </div>
+    </motion.div>
   )
 }
 export default Message
