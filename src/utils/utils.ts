@@ -19,12 +19,12 @@ export const getGroupedMessage = (currentMsg: TMessage, previousMsg?: TMessage, 
   const previous = previousMsg && moment(previousMsg.date, format).format('HH:mm')
   const current = moment(currentMsg.date, format).format('HH:mm')
   const next = nextMsg && moment(nextMsg.date, format).format('HH:mm')
-  if ((!previousMsg || previous !== current) && current === next 
+  if ((!previousMsg || previousMsg.type !== currentMsg.type || previous !== current) && current === next 
     && compareMessageByProps(currentMsg, nextMsg, ['type', 'status'])) return 'bottom'
   if (previous === current && current === next 
     && compareMessageByProps(previousMsg, currentMsg, ['type', 'status'])
     && compareMessageByProps(currentMsg, nextMsg, ['type', 'status'])) return 'middle'
-  if (previous === current && (!nextMsg || current !== next) 
+  if (previous === current && (!nextMsg || currentMsg.type !== nextMsg.type || current !== next) 
     && compareMessageByProps(previousMsg, currentMsg, ['type', 'status'])) return 'top'
   return undefined;  
 }
