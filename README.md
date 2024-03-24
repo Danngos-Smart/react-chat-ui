@@ -21,45 +21,48 @@ npm install react-ui-chat
 
 ## Usage
 
+This is a basic example of how to use the `Chat` component:
+
 ```jsx
-import './App.css'
-import { Chat, useChat } from 'react-ui-chat'
+import { Chat } from 'react-ui-chat'
 import "react-ui-chat/tailwind.css" // if you are not using tailwind
 import { TMessage } from 'react-ui-chat/types' // if you are using typescript
 
 const initialMessages: TMessage[] = [
   {
+    id: 1,
     message: 'I need help with my order',
     date: new Date().toISOString(),
     type: "sent",
   },
   {
+    id: 2,
     message: 'Hello, how can I help you?',
     date: new Date().toISOString(),
-    type: "received",
+    type: "receive",
   },
 ]
 
-function App() {
+const Example1 = () => <Chat initialMessages={initialMessages}/>
 
-  const { chatComponent } = useChat({
-    initialMessages,
-  })
-
-  return (
-    <div>
-      <Chat {...chatComponent} />
-    </div>
-  )
-}
-
-export default App
+export default Example1
 ```
 
 ## Props
+The `Chat` component accepts the following props:
+* `initialMessages`: An array of messages to display when the chat is first rendered.
+* `messages`: An array of messages to display in the chat. If this prop is provided, the chat will be controlled.
+* `messageReceived`: A message object that was received. This prop is used to update the chat only with new messages.
+* `onMessageSend`: A function that is called when the user sends a message. It receives the message object as an argument.
 
-* `Chat`: The main chat container.
-* `useChat`: A hook to manage the chat state.
+## Types
+The `react-ui-chat` package exports the following types:
+* `TMessage`: An object representing a chat message. It has the following main properties:
+  * `id`: A unique identifier for the message.
+  * `message`: The text content of the message.
+  * `date`: The date and time when the message was sent.
+  * `type`: The type of the message. It can be either "sent" or "receive".
+  * `status`: The status of the message. It can be either "sending", "delivered", "read", or "error".
 
 ## Contributing
 
