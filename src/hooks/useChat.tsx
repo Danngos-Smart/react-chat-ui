@@ -1,5 +1,5 @@
 import { TMessage } from "@/types";
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useMemo } from 'react';
 
 type useChatProps = {
   initialMessages?: TMessage[]; // initial, default, not refreshed de messages in the chat
@@ -62,15 +62,11 @@ const useChat = (props?: useChatProps) => {
     }
   }, [onNewMessageReceived, props?.messageReceived, props?.messageReceived?.id, searchMessage])
 
-  useEffect(() => {
-    if (props?.messages) {
-      setMessages([...props.messages].reverse())
-    }
-  }, [props?.messages])
-
+  const propsMessage = useMemo(() =>props?.messages || [], [props?.messages])
+  
   return {
     chatComponent: {
-      messages,
+      messages: props?.messages ? [...propsMessage].reverse() : messages ?? [],
       onNewMessageSend,
     },
     updateMessageStatus,
