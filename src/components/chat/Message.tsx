@@ -1,3 +1,5 @@
+import Checkmark from "@/assets/svg/Checkmark";
+import CheckmarkDone from "@/assets/svg/CheckmarkDone";
 import { TMessage } from "@/types";
 import { classNames } from "@/utils/utils";
 import { motion } from "framer-motion";
@@ -36,6 +38,14 @@ const bg = {
   receive: 'bg-primary-light/20'
 }
 
+const statusIcon = {
+  read: <CheckmarkDone />,
+  delivered: <Checkmark />,
+  sending: '🕒',
+  failed: '🚫',
+  error: '❌'
+}
+
 const Message = ({ message, date, type = 'sent', status, grouped, isLast }: MessageProps) => {
   return (
     <motion.div 
@@ -63,21 +73,14 @@ const Message = ({ message, date, type = 'sent', status, grouped, isLast }: Mess
       >
         {message}
       </motion.div>
-      <div className="text-xs text-gray-400 flex gap-1">
+      <div className="text-xs text-gray-400 flex items-center gap-1">
         {type === 'sent' 
           && !(grouped === 'top' || grouped === 'middle') 
           && status 
           && <span className="text-primary-light">
-          {status === 'read'
-            ? '✓✓'
-            : status === 'delivered'
-              ? '✓'
-              : status === 'sending'
-                ? '🕒'
-                : '🚫'
-          }
+          {statusIcon[status]}
         </span>}
-        {!(grouped === 'top' || grouped === 'middle') && <span>
+        {!(grouped === 'top' || grouped === 'middle') && <span className='text-[10px]'>
           {date}
         </span>}
         {isLast && <span id='last-msg' />}
