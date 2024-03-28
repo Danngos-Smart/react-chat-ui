@@ -1,4 +1,4 @@
-# React UI Chat - (IN DEVELOPMENT, DO NOT USE, YET)
+# React UI Chat
 
 React UI Chat is a customizable chat component for React applications. It provides a simple and elegant interface for building chat features in your web projects.
 
@@ -49,14 +49,18 @@ export default Example1
 ```
 
 ## Props
+
 The `Chat` component accepts the following props:
+
 * `initialMessages`: An array of messages to display when the chat is first rendered.
 * `messages`: An array of messages to display in the chat. If this prop is provided, the chat will be controlled.
 * `messageReceived`: A message object that was received. This prop is used to update the chat only with new messages.
 * `onMessageSend`: A function that is called when the user sends a message. It receives the message object as an argument.
 
 ## Types
+
 The `react-ui-chat` package exports the following types:
+
 * `TMessage`: An object representing a chat message. It has the following main properties:
   * `id`: A unique identifier for the message.
   * `message`: The text content of the message.

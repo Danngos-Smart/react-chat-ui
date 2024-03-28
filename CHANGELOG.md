@@ -2,12 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## 0.1.0 - ---
+## 0.1.0 - 2024-03-24
 
 ### Added
+
 - Add animation to the chat messages.
+- Add some icons for states message
 
 ### Fixed
+
 - Fix performance when rendering a large number of messages or using a Chat as controlled component.
 
 ## [0.0.14](https://github.com/Pep3M/react-ui-chat/releases/tag/v0.0.14) - 2023-03-24
