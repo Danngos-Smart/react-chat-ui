@@ -32,6 +32,8 @@ const Chat = (props: ChatProps) => {
     }
   }), [messages])
 
+  const randomSessionId = useMemo(() => Math.random().toString(36).substring(7), [])
+  
   const handleOnNewMessageSend = (message: string) => {
     onNewMessageSend({
       id: Math.random(),
@@ -50,7 +52,7 @@ const Chat = (props: ChatProps) => {
       <div className="flex-1 overflow-y-auto flex flex-col-reverse">
         <AnimatePresence>
           {messagesFormatted.map((message, index) => (
-            <Message key={message.id} {...message} isLast={index === 0} />
+            <Message key={`message-${randomSessionId}-${messagesFormatted.length - index}`} {...message} isLast={index === 0} />
           ))}
         </AnimatePresence>
       </div>

@@ -1,5 +1,5 @@
 import { TMessage } from '@/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Chat } from '..'
 
 type Conversation = {
@@ -7,11 +7,33 @@ type Conversation = {
   text: string,
   owner: string,
   date: string,
+  status: TMessage['status']
 }
 
 // simulate a chat between two users, passing ALL messages
 function Example3() {
   const [conversation, setConversation] = useState<Conversation[]>([])
+
+  useEffect(() => {
+    if (!conversation.length || conversation[conversation.length - 1].status === 'delivered') return;
+    
+    const time = setTimeout(() => {
+      setConversation((prev) => {
+        const lastMessage = prev[prev.length - 1]
+        return prev.map((message) => {
+          if (message.id === lastMessage.id) {
+            return {
+              ...message,
+              status: 'delivered'
+            }
+          }
+          return message
+        })
+      })
+    }, 1000)
+
+    return () => clearTimeout(time)
+  }, [conversation])
 
   const handleOnMessageSend = (message: TMessage, owner: string) => {
     setConversation([
@@ -20,7 +42,8 @@ function Example3() {
         id: conversation.length + 1,
         text: message.message,
         owner,
-        date: message.date
+        date: message.date,
+        status: 'sending',
       }
     ])
   }
@@ -31,7 +54,7 @@ function Example3() {
       message: message.text,
       date: message.date,
       type: message.owner === owner ? 'sent' : 'receive',
-      status: 'delivered'
+      status: message.status
     }))
     
 
