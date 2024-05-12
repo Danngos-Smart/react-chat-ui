@@ -38,12 +38,7 @@ function Example2() {
   }
 
   return (
-    <div style={{
-      display: 'flex',
-      gap: '1rem',
-      width: '100%',
-      height: '100vh',
-    }}>
+    <div className='container'>
       <CustomChat
         client={'Albert'}
         messageReceived={getLastMessage('Nina')}

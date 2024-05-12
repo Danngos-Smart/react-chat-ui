@@ -14,14 +14,14 @@ type Conversation = {
 function Example3() {
   const [conversation, setConversation] = useState<Conversation[]>([])
 
+  // simulate the message delivery status
   useEffect(() => {
     if (!conversation.length || conversation[conversation.length - 1].status === 'delivered') return;
-    
+
     const time = setTimeout(() => {
       setConversation((prev) => {
-        const lastMessage = prev[prev.length - 1]
         return prev.map((message) => {
-          if (message.id === lastMessage.id) {
+          if (message.status === 'sending') {
             return {
               ...message,
               status: 'delivered'
@@ -35,6 +35,7 @@ function Example3() {
     return () => clearTimeout(time)
   }, [conversation])
 
+  // simulate the message sending
   const handleOnMessageSend = (message: TMessage, owner: string) => {
     setConversation([
       ...conversation,
@@ -48,6 +49,7 @@ function Example3() {
     ])
   }
 
+  // reformat the conversation to be used in the Chat component
   const messagesByOwner: (owner: string) => TMessage[] = (owner) => 
     conversation.map((message, index) => ({
       id: index +1,
@@ -59,12 +61,7 @@ function Example3() {
     
 
   return (
-    <div style={{
-      display: 'flex',
-      gap: '1rem',
-      width: '100%',
-      height: '100vh',
-    }}>
+    <div className="container">
       <Chat 
         messages={messagesByOwner('Albert')}
         onMessageSend={(message) => handleOnMessageSend(message, 'Albert')}
