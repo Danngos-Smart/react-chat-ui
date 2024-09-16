@@ -33,6 +33,7 @@
     "dev": "vite",
     "build": "tsc && vite build && npx tailwindcss build -o dist/tailwind.css && cp ./src/types.ts ./dist",
     "build_lib": "rollup -c",
+    "watch": "rollup -c --watch",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
