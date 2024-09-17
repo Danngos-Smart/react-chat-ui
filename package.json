@@ -1,5 +1,5 @@
 {
-  "name": "react-ui-chat",
+  "name": "react-chat-ui",
   "version": "0.1.1",
   "description": "A simple chat UI for React",
   "type": "module",
@@ -74,6 +74,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "storybook": "^7.6.17",
     "tailwindcss": "^3.4.1",

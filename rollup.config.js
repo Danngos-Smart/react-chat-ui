@@ -1,6 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import postcss from 'rollup-plugin-postcss';
 // import { dts } from "rollup-plugin-dts";
 
 export default {
@@ -18,7 +19,11 @@ export default {
       declaration: true,
       declarationDir: 'dist',
     }),
+    postcss({
+      extract: true, // Extrae el CSS a un archivo separado
+      minimize: true, // Minimiza el CSS
+    }),
     // dts(),
   ],
-  external: ['react'], 
+  external: ['react'],
 };
